@@ -15,71 +15,93 @@ export interface PricingBenefit {
 export interface PricingPlan {
   id: string;
   name: string;
-  price: number;       // in euros
-  period: string;      // "per session" | "for 10 classes" | "per month"
-  highlight: boolean;  // true = most popular, visually elevated
+  price: number;
+  period: string;
+  highlight: boolean;
   badge: string | null;
   description: string;
   benefits: PricingBenefit[];
   cta: string;
+  note?: string;
 }
 
 export const pricingPlans: PricingPlan[] = [
   {
-    id: "drop-in",
-    name: "Drop-in",
-    price: 25,
-    period: "per session",
+    id: "boxe-anglaise-full",
+    name: "Boxe Anglaise Full",
+    price: 450,
+    period: "par an",
     highlight: false,
     badge: null,
-    description:
-      "Train when you want. No commitment — just show up and work hard.",
+    description: "Accès complet aux cours de boxe anglaise avec accès libre à la salle.",
     benefits: [
-      { text: "Access to any single class", included: true },
-      { text: "All class types available", included: true },
-      { text: "Equipment provided", included: true },
-      { text: "Locker room access", included: true },
-      { text: "Priority booking", included: false },
-      { text: "Unlimited monthly access", included: false },
+      { text: "Cours de boxe anglaise (Mardi & Jeudi)", included: true },
+      { text: "Accès lundi en dehors des cours", included: true },
+      { text: "Accès libre à la salle", included: true },
+      { text: "1 Tee-shirt offert", included: true },
+      { text: "Cours Muay-Thaï inclus", included: false },
     ],
-    cta: "Book a Drop-in",
+    cta: "S'inscrire",
+    note: "* Prix réduit pour les étudiants et les élèves",
   },
   {
-    id: "class-pack",
-    name: "Class Pack",
-    price: 180,
-    period: "for 10 classes",
-    highlight: true, // most popular
-    badge: "Best Value",
-    description:
-      "Commit to your training. 10 classes at €18 each — save €70 vs drop-in.",
+    id: "muay-thai-full",
+    name: "Muay-Thaï Full",
+    price: 350,
+    period: "par an",
+    highlight: true,
+    badge: "Recommandé",
+    description: "Accès complet aux cours de muay-thaï trois fois par semaine.",
     benefits: [
-      { text: "10 classes (any type, any day)", included: true },
-      { text: "Valid for 3 months", included: true },
-      { text: "Priority booking access", included: true },
-      { text: "Equipment provided", included: true },
-      { text: "Locker room access", included: true },
-      { text: "Unlimited monthly access", included: false },
+      { text: "Cours de muay-thaï (Lundi, Mercredi, Vendredi)", included: true },
+      { text: "Accès libre à la salle", included: true },
+      { text: "1 Tee-shirt offert", included: true },
+      { text: "Cours Boxe Anglaise inclus", included: false },
     ],
-    cta: "Get the Pack",
+    cta: "S'inscrire",
   },
   {
-    id: "membership",
-    name: "Membership",
-    price: 120,
-    period: "per month",
+    id: "muay-thai",
+    name: "Muay-Thaï",
+    price: 280,
+    period: "par an",
     highlight: false,
     badge: null,
-    description:
-      "Train as much as you want. Unlimited classes for serious athletes.",
+    description: "Cours de muay-thaï deux fois par semaine.",
     benefits: [
-      { text: "Unlimited classes every month", included: true },
-      { text: "All class types included", included: true },
-      { text: "Priority booking guaranteed", included: true },
-      { text: "Equipment provided", included: true },
-      { text: "Locker room access", included: true },
-      { text: "Free guest pass / month", included: true },
+      { text: "Cours de muay-thaï (Mercredi & Vendredi)", included: true },
+      { text: "Accès libre à la salle", included: false },
+      { text: "Tee-shirt offert", included: false },
+      { text: "Cours Boxe Anglaise inclus", included: false },
     ],
-    cta: "Join Now",
+    cta: "S'inscrire",
   },
+  {
+    id: "muay-thai-feminin",
+    name: "Muay-Thaï Féminin",
+    price: 250,
+    period: "par an",
+    highlight: false,
+    badge: null,
+    description: "Cours de muay-thaï féminin deux fois par semaine.",
+    benefits: [
+      { text: "Cours Muay-Thaï Féminin (Mercredi & Vendredi)", included: true },
+      { text: "Accès libre à la salle", included: false },
+      { text: "Tee-shirt offert", included: false },
+      { text: "Cours supplémentaires inclus", included: false },
+    ],
+    cta: "S'inscrire",
+  },
+];
+
+export interface SimpleOption {
+  label: string;
+  price: number | null;
+  unit: string;
+}
+
+export const simpleOptions: SimpleOption[] = [
+  { label: "Cours à l'unité", price: 15, unit: "par cours" },
+  { label: "Abonnement au mois", price: 60, unit: "par mois" },
+  { label: "Cours particulier", price: null, unit: "nous contacter" },
 ];

@@ -41,7 +41,7 @@ export default function InstagramFeed() {
           </p>
           {/* h2 — every section title uses h2 (only one h1 per page) */}
           <h2 className="text-white font-semibold text-3xl md:text-5xl tracking-tight">
-            @overhandz
+            @overhandzclub
           </h2>
         </motion.div>
 
@@ -119,7 +119,7 @@ export default function InstagramFeed() {
         >
           {/* motion.a with whileHover handles opacity change — no raw CSS transition */}
           <motion.a
-            href="https://instagram.com/overhandz"
+            href="https://www.instagram.com/overhandzclub/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ opacity: 1 }}

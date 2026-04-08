@@ -169,7 +169,7 @@ export default function ContactPageClient() {
                     </svg>
                     <div>
                       <p className="text-white text-sm font-medium">Address</p>
-                      <p className="text-dim text-sm mt-0.5">Ivry-sur-Seine, 94200<br />Paris, France</p>
+                      <p className="text-dim text-sm mt-0.5">12 Rue Molière<br />94200 Ivry-sur-Seine</p>
                     </div>
                   </div>
 
@@ -181,8 +181,8 @@ export default function ContactPageClient() {
                     </svg>
                     <div>
                       <p className="text-white text-sm font-medium">Instagram</p>
-                      <a href="https://instagram.com/overhandz" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white text-sm transition-colors">
-                        @overhandz
+                      <a href="https://www.instagram.com/overhandzclub/" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white text-sm transition-colors">
+                        @overhandzclub
                       </a>
                     </div>
                   </div>
@@ -202,7 +202,7 @@ export default function ContactPageClient() {
 
               {/* WHATSAPP BUTTON */}
               <a
-                href="https://wa.me/33600000000"
+                href="https://wa.me/33695500023"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-surface border border-edge rounded-xl p-4 hover:border-white/20 transition-colors"
@@ -219,16 +219,17 @@ export default function ContactPageClient() {
                 </div>
               </a>
 
-              {/* MAP PLACEHOLDER */}
-              <div className="relative aspect-video bg-surface border border-edge rounded-xl overflow-hidden flex items-center justify-center">
-                <div className="text-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-dim mx-auto mb-2">
-                    <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  <p className="text-dim text-sm">Ivry-sur-Seine, Paris</p>
-                  {/* FUTURE BACKEND: Replace with Google Maps embed */}
-                </div>
+              {/* MAP */}
+              <div className="relative aspect-video border border-edge rounded-xl overflow-hidden">
+                <iframe
+                  title="Overhandz Boxing Club map"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=2.3747%2C48.8092%2C2.3947%2C48.8192&layer=mapnik&marker=48.8142%2C2.3847"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                />
               </div>
             </motion.div>
           </div>

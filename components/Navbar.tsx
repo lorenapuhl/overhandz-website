@@ -3,6 +3,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import Button from "@/components/ui/Button"
 
@@ -39,11 +40,15 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         {/* LOGO — links to home page */}
-        <Link
-          href="/"
-          className="text-white font-bold text-xl tracking-tight hover:opacity-80 transition-opacity"
-        >
-          OVERHANDZ
+        <Link href="/" className="hover:opacity-80 transition-opacity">
+          <Image
+            src="/images/ui/logo-transparent.png"
+            alt="Overhandz Boxing Club"
+            width={140}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         {/* DESKTOP NAV — hidden on mobile (hidden md:flex) */}

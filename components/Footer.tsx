@@ -3,6 +3,7 @@
 // Server Component — no client-side features needed (only static links).
 
 import Link from "next/link"
+import Image from "next/image"
 
 // ---------------------------------------------------------------------------
 // Footer sections definition — add or remove columns here
@@ -34,8 +35,14 @@ export default function Footer() {
 
           {/* BRAND COLUMN */}
           <div className="md:col-span-2">
-            <Link href="/" className="text-white font-bold text-xl tracking-tight">
-              OVERHANDZ
+            <Link href="/" className="hover:opacity-80 transition-opacity inline-block">
+              <Image
+                src="/images/ui/logo-transparent.png"
+                alt="Overhandz Boxing Club"
+                width={140}
+                height={40}
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="mt-3 text-dim text-sm leading-relaxed max-w-xs">
               Parisian boxing club based in Ivry-sur-Seine. Real fighters, real
@@ -65,7 +72,7 @@ export default function Footer() {
 
             {/* INSTAGRAM LINK */}
             <a
-              href="https://instagram.com/overhandz"
+              href="https://www.instagram.com/overhandzclub/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 text-dim hover:text-white transition-colors text-sm"
@@ -87,7 +94,7 @@ export default function Footer() {
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
               </svg>
-              @overhandz
+              @overhandzclub
             </a>
           </div>
 

@@ -1,7 +1,20 @@
-# Add posts
+------------------------------------------------
+PROMPT
+------------------------------------------------
+Read CLAUDE.md and the skills from @skills/. Then read @prompts/Add-posts.md. Follow the exact guidelines described in @prompts/Add-posts.md. If you have any questions, ask me first instead of guessing a solution. If any guifelines from @prompts/Add-posts.md and CLAUDE.md or the skills from @skills/ contradict each other, ask me to clarify. 
 
-IMG_FOLDER = @public/images/events/
-DATA_FILE = @components/data/events.ts
+-------------------------------------------------
+TASK: ADD POSTS THE OUR WEBSITE
+-------------------------------------------------
+
+* Repeat this task for the following images from IMG_FOLDER and update the data in DATA_FILE
+- TASK 1: 
+IMG_FOLDER = @public/images/promotions/
+DATA_FILE = @components/data/promotions.ts
+
+- TASK 2:
+IMG_FOLDER = @public/images/news/
+DATA_FILE = @components/data/news.ts
 
 
 I have new Instagram post screenshots saved in IMG_FOLDER.

@@ -70,7 +70,7 @@ export default function AboutSection() {
             className="relative aspect-square rounded-2xl overflow-hidden"
           >
             <Image
-              src="https://placehold.co/800x800/121212/FFFFFF"
+              src="/images/ui/about-cropped.png"
               alt="Coach Karim training a student at Overhandz Boxing Club in Ivry-sur-Seine, Paris"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

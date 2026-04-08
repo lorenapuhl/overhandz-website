@@ -128,7 +128,7 @@ export default function HeroSection() {
             {/* next/image with fill prop fills the parent container */}
             {/* object-cover = crops the image to fill without distortion */}
             <Image
-              src="https://placehold.co/800x1000/121212/FFFFFF"
+              src="/images/ui/hero-cropped.png"
               alt="Boxers sparring during training session at Overhandz Boxing Club in Paris"
               fill
               // sizes tells the browser how large the image is at each breakpoint

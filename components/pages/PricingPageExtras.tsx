@@ -13,24 +13,28 @@ import SectionWrapper from "@/components/ui/SectionWrapper"
 
 const faqs = [
   {
-    q: "Do I need to sign a contract?",
-    a: "No. All options — drop-in, class packs, and monthly memberships — are contract-free. Cancel or change at any time.",
+    q: "Comment s'inscrire ?",
+    a: "Venez directement à la salle ou contactez-nous pour choisir votre formule. Aucun engagement à long terme requis.",
   },
   {
-    q: "Can I try before I commit?",
-    a: "Yes. Your first class is completely free. No card required. Show up, train, then decide.",
+    q: "Puis-je essayer avant de m'abonner ?",
+    a: "Oui. Venez à un cours à l'unité (15€) pour voir si la discipline vous convient avant de prendre un abonnement annuel.",
   },
   {
-    q: "How long do class packs last?",
-    a: "Class packs are valid for 3 months from the date of purchase. Use them at your own pace.",
+    q: "Y a-t-il une réduction étudiant ?",
+    a: "Oui. L'abonnement Boxe Anglaise Full est proposé à un tarif réduit pour les étudiants et les élèves. Renseignez-vous à l'accueil.",
   },
   {
-    q: "What's included with the membership?",
-    a: "Unlimited classes every month across all class types — Boxing, Muay Thai, Sparring, and Beginners. Plus priority booking and one guest pass per month.",
+    q: "Qu'est-ce que l'abonnement Full inclut en plus ?",
+    a: "Les formules Full (Boxe Anglaise Full et Muay-Thaï Full) incluent un accès libre à la salle en dehors des cours et un tee-shirt offert.",
   },
   {
-    q: "Do you provide equipment?",
-    a: "Gloves and hand wraps can be borrowed at the gym. We recommend getting your own after a few sessions.",
+    q: "Le matériel est-il fourni ?",
+    a: "Des gants et bandes peuvent être empruntés à la salle. Nous recommandons d'acquérir votre propre équipement après quelques séances.",
+  },
+  {
+    q: "Comment fonctionnent les cours particuliers ?",
+    a: "Les cours particuliers sont disponibles sur rendez-vous avec nos coachs. Contactez-nous pour les disponibilités et les tarifs.",
   },
 ];
 
@@ -46,14 +50,14 @@ export default function PricingPageExtras() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <p className="text-dim text-sm font-medium tracking-widest uppercase mb-2">
-              Boxing membership paris
+              Abonnements · Ivry-sur-Seine
             </p>
             {/* h1 — exactly one per page */}
             <h1 className="text-white font-bold text-5xl md:text-7xl tracking-tight">
-              Pricing
+              Tarifs
             </h1>
             <p className="text-dim text-base mt-4 max-w-lg">
-              No contracts, no hidden fees. Pick the plan that fits your schedule.
+              Des abonnements adaptés à votre discipline et votre rythme.
             </p>
           </motion.div>
         </SectionWrapper>
@@ -70,7 +74,7 @@ export default function PricingPageExtras() {
             className="mb-10"
           >
             <h2 className="text-white font-semibold text-3xl md:text-5xl tracking-tight">
-              Frequently asked
+              Questions fréquentes
             </h2>
           </motion.div>
 

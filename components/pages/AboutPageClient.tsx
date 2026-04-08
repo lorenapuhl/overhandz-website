@@ -20,25 +20,25 @@ import FinalCTA from "@/components/sections/FinalCTA"
 
 const coaches = [
   {
-    id: "karim",
-    name: "Coach Karim",
-    role: "Head Coach — Boxing & Fight Team",
+    id: "rudy",
+    name: "Coach Rudy",
+    role: "Coach Boxe Anglaise",
     imageUrl: "https://placehold.co/400x500/121212/FFFFFF",
-    bio: "10-time national amateur champion. Karim turned professional at 22 before returning to Ivry to train the next generation. His technical depth and demanding standards have produced over 30 regional-level fighters.",
+    bio: "Spécialiste de la boxe anglaise, Rudy encadre les cours du mardi et du jeudi. Technique rigoureuse, pédagogie accessible — que vous débutiez ou que vous prépariez un combat.",
   },
   {
-    id: "yasmine",
-    name: "Coach Yasmine",
-    role: "Boxing & Beginners Coach",
+    id: "fabrice",
+    name: "Coach Fabrice",
+    role: "Coach Muay-Thaï",
     imageUrl: "https://placehold.co/400x500/141414/FFFFFF",
-    bio: "Former French youth champion and certified sports educator. Yasmine specializes in building solid foundations — footwork, defense, and confidence — for every level.",
+    bio: "Passionné de muay-thaï, Fabrice anime le cours du lundi. Son approche allie technique de frappe, travail aux pads et conditionnement physique pour tous les niveaux.",
   },
   {
-    id: "samir",
-    name: "Coach Samir",
-    role: "Muay Thai & Conditioning Coach",
+    id: "morad",
+    name: "Coach Morad",
+    role: "Coach Muay-Thaï & Muay-Thaï Féminin",
     imageUrl: "https://placehold.co/400x500/161616/FFFFFF",
-    bio: "Muay Thai competitor with 8 years of experience in Thailand and France. Samir brings authentic technique, brutal conditioning, and a love for the sport to every session.",
+    bio: "Morad encadre les cours de muay-thaï et les cours féminins du mercredi et vendredi. Ambiance exigeante et bienveillante, avec une attention particulière portée à la technique et à la progression de chacun.",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function AboutPageClient() {
               className="relative aspect-[4/5] rounded-2xl overflow-hidden"
             >
               <Image
-                src="https://placehold.co/800x1000/121212/FFFFFF"
+                src="/images/ui/about-cropped.png"
                 alt="Interior of Overhandz Boxing Club gym in Ivry-sur-Seine Paris showing boxing bags and ring"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
