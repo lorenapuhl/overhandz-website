@@ -25,6 +25,8 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
+  target?: string;      // e.g. "_blank" for external links
+  rel?: string;         // e.g. "noopener noreferrer" for external links
 }
 
 export default function Button({
@@ -35,6 +37,8 @@ export default function Button({
   className = "",
   disabled = false,
   type = "button",
+  target,
+  rel,
 }: ButtonProps) {
   // Base styles shared by both variants
   const base =
@@ -62,7 +66,7 @@ export default function Button({
     return (
       <motion.div {...motionProps} className="inline-flex">
         {/* next/link handles client-side navigation without a full page reload */}
-        <Link href={href} className={classes}>
+        <Link href={href} className={classes} target={target} rel={rel}>
           {children}
         </Link>
       </motion.div>

@@ -85,8 +85,7 @@ export default function HeroSection() {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="text-dim text-base md:text-lg leading-relaxed max-w-md mb-8"
             >
-              Parisian boxing club. Real fighters, real training. Book your class
-              in seconds — no DMs, no hassle.
+              Parisian boxing club. Real fighters, real training.
             </motion.p>
 
             {/* CTA BUTTONS — side by side on desktop, stacked on mobile */}

@@ -23,21 +23,21 @@ const coaches = [
     id: "rudy",
     name: "Coach Rudy",
     role: "Coach Boxe Anglaise",
-    imageUrl: "https://placehold.co/400x500/121212/FFFFFF",
+    imageUrl: "/images/coaches/rudy.png",
     bio: "Spécialiste de la boxe anglaise, Rudy encadre les cours du mardi et du jeudi. Technique rigoureuse, pédagogie accessible — que vous débutiez ou que vous prépariez un combat.",
   },
   {
     id: "fabrice",
     name: "Coach Fabrice",
     role: "Coach Muay-Thaï",
-    imageUrl: "https://placehold.co/400x500/141414/FFFFFF",
+    imageUrl: "/images/coaches/fabrice.png",
     bio: "Passionné de muay-thaï, Fabrice anime le cours du lundi. Son approche allie technique de frappe, travail aux pads et conditionnement physique pour tous les niveaux.",
   },
   {
     id: "morad",
     name: "Coach Morad",
     role: "Coach Muay-Thaï & Muay-Thaï Féminin",
-    imageUrl: "https://placehold.co/400x500/161616/FFFFFF",
+    imageUrl: "/images/coaches/morad.png",
     bio: "Morad encadre les cours de muay-thaï et les cours féminins du mercredi et vendredi. Ambiance exigeante et bienveillante, avec une attention particulière portée à la technique et à la progression de chacun.",
   },
 ];
@@ -64,19 +64,36 @@ export default function AboutPageClient() {
         </SectionWrapper>
       </section>
 
-      {/* STORY SECTION — split layout */}
+      {/* STORY SECTION */}
       <section className="py-20 px-6 md:py-36 md:px-12 bg-canvas">
         <SectionWrapper>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <motion.div
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            {/* h2 title (commented out)
+            <h2 className="text-white font-semibold text-3xl md:text-4xl tracking-tight mb-8">
+              Born in Ivry.
+              <br />
+              Built for fighters.
+            </h2>
+            */}
 
-            {/* LEFT — image */}
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: -20 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative aspect-[4/5] rounded-2xl overflow-hidden"
-            >
+            {/* Full-width image */}
+            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8">
+              <Image
+                src="/images/ui/about-picture.png"
+                alt="Interior of Overhandz Boxing Club gym in Ivry-sur-Seine Paris showing boxing bags and ring"
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+
+            {/* LEFT — old image (commented out, replaced by about-picture.png above)
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
               <Image
                 src="/images/ui/about-cropped.png"
                 alt="Interior of Overhandz Boxing Club gym in Ivry-sur-Seine Paris showing boxing bags and ring"
@@ -84,51 +101,41 @@ export default function AboutPageClient() {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
-            </motion.div>
+            </div>
+            */}
 
-            {/* RIGHT — text */}
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 20 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-            >
-              <h2 className="text-white font-semibold text-3xl md:text-4xl tracking-tight mb-6">
-                Born in Ivry.
-                <br />
-                Built for fighters.
-              </h2>
-              <div className="space-y-4 text-dim text-base leading-relaxed">
-                <p>
-                  Overhandz started in 2018 as a single training room in Ivry-sur-Seine
-                  with one heavy bag, a speed bag, and a coach who believed real boxing
-                  didn&apos;t belong to the elite.
-                </p>
-                <p>
-                  Since then, over 1,600 members have trained with us — from office
-                  workers looking for a challenge to fighters who have gone on to
-                  represent Paris at the regional and national level.
-                </p>
-                <p>
-                  We offer boxing, Muay Thai, sparring sessions, and beginner programs.
-                  Our approach is technical, demanding, and welcoming — you don&apos;t
-                  have to want to fight to train here. But if you do, we&apos;ll get you there.
-                </p>
-                <p>
-                  Based in Ivry-sur-Seine, minutes from central Paris.
-                </p>
-              </div>
+            {/* RIGHT — story text (commented out, not visible with full-width image layout)
+            <div className="space-y-4 text-dim text-base leading-relaxed">
+              <p>
+                Overhandz started in 2018 as a single training room in Ivry-sur-Seine
+                with one heavy bag, a speed bag, and a coach who believed real boxing
+                didn&apos;t belong to the elite.
+              </p>
+              <p>
+                Since then, over 1,600 members have trained with us — from office
+                workers looking for a challenge to fighters who have gone on to
+                represent Paris at the regional and national level.
+              </p>
+              <p>
+                We offer boxing, Muay Thai, sparring sessions, and beginner programs.
+                Our approach is technical, demanding, and welcoming — you don&apos;t
+                have to want to fight to train here. But if you do, we&apos;ll get you there.
+              </p>
+              <p>
+                Based in Ivry-sur-Seine, minutes from central Paris.
+              </p>
+            </div>
+            */}
 
-              <div className="mt-8 flex gap-3">
-                <Button href="/schedule" variant="primary">
-                  Book a class
-                </Button>
-                <Button href="/contact" variant="secondary">
-                  Visit us
-                </Button>
-              </div>
-            </motion.div>
-          </div>
+            <div className="flex gap-3">
+              <Button href="/schedule" variant="primary">
+                Book a class
+              </Button>
+              <Button href="/contact" variant="secondary">
+                Visit us
+              </Button>
+            </div>
+          </motion.div>
         </SectionWrapper>
       </section>
 

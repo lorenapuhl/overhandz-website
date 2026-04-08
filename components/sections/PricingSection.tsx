@@ -1,11 +1,14 @@
 "use client"
-// "use client" needed: uses Framer Motion for scroll and hover animations.
+// "use client" needed: uses useState for modal state, Framer Motion for scroll and hover animations.
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import SectionWrapper from "@/components/ui/SectionWrapper"
 import Badge from "@/components/ui/Badge"
 import Button from "@/components/ui/Button"
+import SubscriptionModal from "@/components/SubscriptionModal"
 import { pricingPlans, simpleOptions } from "@/components/data/pricing"
+import type { PricingPlan } from "@/components/data/pricing"
 
 // ---------------------------------------------------------------------------
 // PricingSection — 4 subscription plan cards + simple options row
@@ -20,6 +23,14 @@ import { pricingPlans, simpleOptions } from "@/components/data/pricing"
 // ---------------------------------------------------------------------------
 
 export default function PricingSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
+
+  const handleSignUp = (plan: PricingPlan) => {
+    setSelectedPlan(plan);
+    setModalOpen(true);
+  };
+
   return (
     <section className="py-20 px-6 md:py-36 md:px-12 bg-canvas">
       <SectionWrapper>
@@ -113,9 +124,9 @@ export default function PricingSection() {
 
               {/* CTA BUTTON */}
               <Button
-                href="/contact"
                 variant={plan.highlight ? "primary" : "secondary"}
                 className="w-full"
+                onClick={() => handleSignUp(plan)}
               >
                 {plan.cta}
               </Button>
@@ -152,6 +163,12 @@ export default function PricingSection() {
         </motion.div>
 
       </SectionWrapper>
+
+      <SubscriptionModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        selectedPlan={selectedPlan}
+      />
     </section>
   );
 }

@@ -49,8 +49,8 @@ export const pricingPlans: PricingPlan[] = [
     name: "Muay-Thaï Full",
     price: 350,
     period: "par an",
-    highlight: true,
-    badge: "Recommandé",
+    highlight: false, // highlight: true — temporarily disabled
+    badge: null, // badge: "Recommandé" — temporarily disabled
     description: "Accès complet aux cours de muay-thaï trois fois par semaine.",
     benefits: [
       { text: "Cours de muay-thaï (Lundi, Mercredi, Vendredi)", included: true },

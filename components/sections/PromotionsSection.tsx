@@ -92,7 +92,9 @@ export default function PromotionsSection() {
                 )}
 
                 <Button
-                  href="/schedule"
+                  href="https://overhandz.bigcartel.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnVVP3mw4tDYQARO-KihA8nWJUgqxVdb4hnfPNmihBKmSPPO5ra4_t1TdfpWg_aem_dcZpPULbT49BFVH5v3zdnA"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variant={promo.highlight ? "primary" : "secondary"}
                   className="self-start"
                 >
