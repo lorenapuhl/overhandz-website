@@ -127,7 +127,7 @@ export default function AboutPageClient() {
             </div>
             */}
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center">
               <Button href="/schedule" variant="primary">
                 Book a class
               </Button>

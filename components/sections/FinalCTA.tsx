@@ -33,7 +33,7 @@ export default function FinalCTA() {
           </p>
 
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
             <Button href="/schedule" variant="primary">
               Book your first class
             </Button>

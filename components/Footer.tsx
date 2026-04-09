@@ -17,7 +17,6 @@ const FOOTER_LINKS = {
   ],
   Info: [
     { href: "/contact", label: "Contact" },
-    { href: "/case-study", label: "Case Study" },
   ],
 };
 
@@ -31,10 +30,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16">
 
         {/* TOP ROW — logo + nav columns + instagram */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
 
           {/* BRAND COLUMN */}
-          <div className="md:col-span-2">
+          <div className="col-span-2 md:col-span-2">
             <Link href="/" className="hover:opacity-80 transition-opacity inline-block">
               <Image
                 src="/images/ui/logo-transparent.png"

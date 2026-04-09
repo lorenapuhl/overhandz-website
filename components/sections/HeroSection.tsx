@@ -48,6 +48,7 @@ export default function HeroSection() {
             initial="hidden"
             // animate = immediately animate on page load (hero doesn't use scroll trigger)
             animate="visible"
+            className="text-center md:text-left"
             variants={{
               visible: {
                 // staggerChildren delays each child animation by 0.12s
@@ -92,7 +93,7 @@ export default function HeroSection() {
             <motion.div
               variants={fadeUp}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row gap-3"
+              className="flex flex-col items-center md:items-start sm:flex-row gap-3"
             >
               {/* Primary CTA — book a class navigates to the schedule page */}
               <Button href="/schedule" variant="primary">
