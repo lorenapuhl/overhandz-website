@@ -1,5 +1,6 @@
 "use client"
-// "use client" needed: uses Framer Motion for hover + scroll animations, and useState.
+// "use client" needed: uses Framer Motion for scroll animations, and useState for
+// hover + mobile tap state.
 
 import { useState } from "react"
 import { motion } from "framer-motion"
@@ -16,8 +17,8 @@ import { instagramPosts } from "@/components/data/instagram"
 //
 // Each card:
 //   - Square aspect ratio (1:1)
-//   - Desktop hover: overlay appears + image zooms slightly, click opens link
-//   - Mobile tap: 1st tap shows overlay, 2nd tap on same post opens link
+//   - Desktop: overlay + zoom on hover; click opens Instagram link
+//   - Mobile:  1st tap shows overlay, 2nd tap on same post opens Instagram link
 //
 // // FUTURE BACKEND:
 // // Replace instagramPosts mock data with Instagram Basic Display API
@@ -26,7 +27,9 @@ import { instagramPosts } from "@/components/data/instagram"
 // ---------------------------------------------------------------------------
 
 export default function InstagramFeed() {
-  // Tracks which post has its overlay pinned open on touch devices
+  // hoveredPostId — which post the mouse is currently over (desktop)
+  const [hoveredPostId, setHoveredPostId] = useState<string | null>(null);
+  // activePostId — which post had its overlay pinned open by a tap (mobile)
   const [activePostId, setActivePostId] = useState<string | null>(null);
 
   const handlePostClick = (postId: string, link: string) => {
@@ -73,75 +76,70 @@ export default function InstagramFeed() {
         {/* INSTAGRAM GRID */}
         {/* grid-cols-2 on mobile, grid-cols-3 on desktop — per spec */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
-          {instagramPosts.map((post, index) => (
-            <motion.div
-              key={post.id}
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              viewport={{ once: true }}
-              // whileHover="hovered" propagates the "hovered" variant to all child
-              // motion elements — used for desktop hover overlay + zoom.
-              // animate="touched"/"idle" propagates the same way for mobile tap state.
-              whileHover="hovered"
-              animate={activePostId === post.id ? "touched" : "idle"}
-              transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.06 }}
-              // aspect-square = forces 1:1 ratio
-              // overflow-hidden = clips the zoom effect to the card boundary
-              className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
-              onClick={() => handlePostClick(post.id, post.link)}
-            >
-              {/* Inner wrapper for the image — scales via Framer Motion variant */}
-              <motion.div
-                className="absolute inset-0"
-                variants={{
-                  hovered: { scale: 1.1 },
-                  touched: { scale: 1.1 },
-                  idle: { scale: 1 },
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <Image
-                  src={post.imageUrl}
-                  alt={`Instagram post from Overhandz Boxing Club: ${post.caption}`}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                  className="object-cover"
-                />
-              </motion.div>
+          {instagramPosts.map((post, index) => {
+            // Overlay is visible when hovered (desktop) or tapped once (mobile)
+            const overlayVisible =
+              hoveredPostId === post.id || activePostId === post.id;
 
-              {/* OVERLAY — fades in on hover (desktop) or tap (mobile) */}
+            return (
               <motion.div
-                className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-3"
-                variants={{
-                  hovered: { opacity: 1 },
-                  touched: { opacity: 1 },
-                  idle: { opacity: 0 },
-                }}
-                initial="idle"
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                key={post.id}
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.06 }}
+                // aspect-square = forces 1:1 ratio
+                // overflow-hidden = clips the zoom effect to the card boundary
+                className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
+                onMouseEnter={() => setHoveredPostId(post.id)}
+                onMouseLeave={() => setHoveredPostId(null)}
+                onClick={() => handlePostClick(post.id, post.link)}
               >
-                {/* Like count */}
-                <div className="flex items-center gap-1.5 text-white text-sm font-semibold mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    stroke="white"
-                    strokeWidth="2"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                  </svg>
-                  {post.likes.toLocaleString()}
-                </div>
-                {/* Caption — truncated to keep the overlay clean */}
-                <p className="text-white/80 text-xs text-center line-clamp-2 leading-snug">
-                  {post.caption}
-                </p>
+                {/* Inner wrapper for the image — scales on hover/tap */}
+                <motion.div
+                  className="absolute inset-0"
+                  animate={{ scale: overlayVisible ? 1.1 : 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <Image
+                    src={post.imageUrl}
+                    alt={`Instagram post from Overhandz Boxing Club: ${post.caption}`}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* OVERLAY — fades in on hover (desktop) or 1st tap (mobile) */}
+                <motion.div
+                  className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-3"
+                  animate={{ opacity: overlayVisible ? 1 : 0 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  {/* Like count */}
+                  <div className="flex items-center gap-1.5 text-white text-sm font-semibold mb-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      stroke="white"
+                      strokeWidth="2"
+                    >
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                    {post.likes.toLocaleString()}
+                  </div>
+                  {/* Caption — truncated to keep the overlay clean */}
+                  <p className="text-white/80 text-xs text-center line-clamp-2 leading-snug">
+                    {post.caption}
+                  </p>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* INSTAGRAM CTA */}
