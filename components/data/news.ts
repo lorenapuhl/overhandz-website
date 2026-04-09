@@ -18,6 +18,7 @@ export interface NewsItem {
   imageUrl: string;
   category: NewsCategory;
   author: string;
+  link: string;
 }
 
 export const newsItems: NewsItem[] = [
@@ -30,6 +31,7 @@ export const newsItems: NewsItem[] = [
     imageUrl: "/images/news/post-1.png",
     category: "announcement",
     author: "Overhandz Team",
+    link: "https://www.instagram.com/p/CnNE2T9L-xW/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "news-2",
@@ -40,6 +42,7 @@ export const newsItems: NewsItem[] = [
     imageUrl: "/images/news/post-2.png",
     category: "update",
     author: "Overhandz Team",
+    link: "https://www.instagram.com/p/ClCSuzkrHxj/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "news-3",
@@ -50,6 +53,7 @@ export const newsItems: NewsItem[] = [
     imageUrl: "/images/news/post-3.png",
     category: "announcement",
     author: "Overhandz Team",
+    link: "https://www.instagram.com/p/CUApqWusQ0c/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "news-4",
@@ -60,5 +64,6 @@ export const newsItems: NewsItem[] = [
     imageUrl: "/images/news/post-4.png",
     category: "update",
     author: "Overhandz Team",
+    link: "https://www.instagram.com/p/CTrcl1asR0t/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
 ];

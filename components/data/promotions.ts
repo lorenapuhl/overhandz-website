@@ -16,6 +16,7 @@ export interface Promotion {
   cta: string;           // button label
   highlight: boolean;    // true = visually prominent card
   expiresLabel: string | null; // e.g. "Ends April 30" or null
+  link: string;
 }
 
 export const promotions: Promotion[] = [
@@ -29,6 +30,7 @@ export const promotions: Promotion[] = [
     cta: "Shop Now",
     highlight: false,
     expiresLabel: null,
+    link: "https://www.instagram.com/p/CkYamcaNPJW/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "promo-2",
@@ -40,6 +42,7 @@ export const promotions: Promotion[] = [
     cta: "Enter Giveaway",
     highlight: true,
     expiresLabel: "Winners announced next Friday",
+    link: "https://www.instagram.com/p/C3x0Lw3sLF0/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "promo-3",
@@ -51,5 +54,6 @@ export const promotions: Promotion[] = [
     cta: "Shop Now",
     highlight: false,
     expiresLabel: null,
+    link: "https://www.instagram.com/p/CyLiEW9tuPx/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
 ];

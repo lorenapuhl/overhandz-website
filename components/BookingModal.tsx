@@ -192,7 +192,7 @@ export default function BookingModal({
                 <label className="block text-dim text-xs mb-1">Full name</label>
                 <input
                   type="text"
-                  placeholder="Jean Dupont"
+                  placeholder="Marianne Polare"
                   className={inputClass}
                   value={formData.name}
                   // onChange fires every time the user types — updates formData
@@ -205,7 +205,7 @@ export default function BookingModal({
                 <label className="block text-dim text-xs mb-1">Email</label>
                 <input
                   type="email"
-                  placeholder="jean@example.com"
+                  placeholder="marianne@example.com"
                   className={inputClass}
                   value={formData.email}
                   onChange={(e) => updateField("email", e.target.value)}

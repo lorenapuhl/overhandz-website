@@ -60,8 +60,14 @@ export default function EventsSection() {
         {/* EVENTS GRID — 2 columns on desktop, stacked on mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((event, index) => (
-            <motion.div
+            <a
               key={event.id}
+              href={event.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+            <motion.div
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 30 }}
               viewport={{ once: true }}
@@ -116,6 +122,7 @@ export default function EventsSection() {
                 </div>
               </div>
             </motion.div>
+            </a>
           ))}
         </div>
       </SectionWrapper>

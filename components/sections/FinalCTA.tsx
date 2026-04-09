@@ -29,7 +29,6 @@ export default function FinalCTA() {
             Train with us.
           </h2>
           <p className="text-dim text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
-            First class is free. No credit card. No commitment.
             Show up and see what Overhandz is about.
           </p>
 
@@ -45,7 +44,7 @@ export default function FinalCTA() {
 
           {/* Location trust signal */}
           <p className="text-dim text-sm mt-8">
-            Ivry-sur-Seine · Paris · Open 7 days a week
+            Ivry-sur-Seine · Paris · Open 5 days a week
           </p>
         </motion.div>
       </SectionWrapper>

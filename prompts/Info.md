@@ -22,9 +22,9 @@ In `@components/data/classes.ts`, `@components/sections/SchedulePreview.tsx` and
 - Adapt the UI structure if necessary to acommodate the information and make it look visually clean
 
 # 4. Hero-section and logo
-- `@public/images/ui/logo.png:`
+- `@public/images/ui/logo.png`:
 Use the logo and place it instead of the "overhandz" title in the header as well as in the footer.
-- `@public/images/ui/hero.png:`
+- `@public/images/ui/hero.png`:
 Crop the screenshot to isolate just the post image — no browser chrome, no Instagram sidebar, no navigation arrows, no carousel dots, no comments panel. Use these coordinates (confirmed for this setup): x_left=367, x_right=989, y_up=180, y_down=1017 which translates to the ImageMagick crop argument: 622x837+367+180
  Run: magick "input.png" -crop 622x837+367+180 +repage "output.png". use the image for the right side of the hero-section in `@components/sections/HeroSection.tsx`. 
 - `@public/images/ui/about.png`: Crop the screenshot to isolate just the post image — no browser chrome, no Instagram sidebar, no navigation arrows, no carousel dots, no comments panel. Use these coordinates (confirmed for this setup): x_left=367, x_right=989, y_up=180, y_down=1017 which translates to the ImageMagick crop argument: 622x837+367+180

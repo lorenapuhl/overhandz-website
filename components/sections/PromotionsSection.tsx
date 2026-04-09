@@ -52,9 +52,11 @@ export default function PromotionsSection() {
               // whileHover="hovered" propagates the variant name down to child motion elements
               // so the inner image can respond with scale — no raw CSS transition needed
               whileHover="hovered"
+              // Clicking the card opens the Instagram post link
+              onClick={() => window.open(promo.link, "_blank", "noopener,noreferrer")}
               // Highlighted card spans 2 columns on desktop
               className={`
-                bg-surface border rounded-xl overflow-hidden flex flex-col
+                bg-surface border rounded-xl overflow-hidden flex flex-col cursor-pointer
                 ${promo.highlight ? "border-white/30 md:col-span-2" : "border-edge"}
               `}
             >
@@ -91,15 +93,17 @@ export default function PromotionsSection() {
                   <p className="text-dim text-xs mb-3">{promo.expiresLabel}</p>
                 )}
 
-                <Button
-                  href="https://overhandz.bigcartel.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnVVP3mw4tDYQARO-KihA8nWJUgqxVdb4hnfPNmihBKmSPPO5ra4_t1TdfpWg_aem_dcZpPULbT49BFVH5v3zdnA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant={promo.highlight ? "primary" : "secondary"}
-                  className="self-start"
-                >
-                  {promo.cta}
-                </Button>
+                {/* Stop propagation so clicking the button opens the shop, not the IG post */}
+                <div onClick={(e) => e.stopPropagation()} className="self-start">
+                  <Button
+                    href="https://overhandz.bigcartel.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnVVP3mw4tDYQARO-KihA8nWJUgqxVdb4hnfPNmihBKmSPPO5ra4_t1TdfpWg_aem_dcZpPULbT49BFVH5v3zdnA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant={promo.highlight ? "primary" : "secondary"}
+                  >
+                    {promo.cta}
+                  </Button>
+                </div>
               </div>
             </motion.div>
           ))}

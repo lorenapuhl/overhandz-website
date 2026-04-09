@@ -1,6 +1,7 @@
 "use client"
-// "use client" needed: uses Framer Motion for hover + scroll animations.
+// "use client" needed: uses Framer Motion for hover + scroll animations, and useState.
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import SectionWrapper from "@/components/ui/SectionWrapper"
@@ -15,7 +16,8 @@ import { instagramPosts } from "@/components/data/instagram"
 //
 // Each card:
 //   - Square aspect ratio (1:1)
-//   - On hover: overlay appears + image zooms slightly
+//   - Desktop hover: overlay appears + image zooms slightly, click opens link
+//   - Mobile tap: 1st tap shows overlay, 2nd tap on same post opens link
 //
 // // FUTURE BACKEND:
 // // Replace instagramPosts mock data with Instagram Basic Display API
@@ -24,6 +26,29 @@ import { instagramPosts } from "@/components/data/instagram"
 // ---------------------------------------------------------------------------
 
 export default function InstagramFeed() {
+  // Tracks which post has its overlay pinned open on touch devices
+  const [activePostId, setActivePostId] = useState<string | null>(null);
+
+  const handlePostClick = (postId: string, link: string) => {
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: coarse)").matches;
+
+    if (isTouchDevice) {
+      if (activePostId === postId) {
+        // Second tap: open the link and dismiss the overlay
+        window.open(link, "_blank", "noopener,noreferrer");
+        setActivePostId(null);
+      } else {
+        // First tap: pin the overlay open
+        setActivePostId(postId);
+      }
+    } else {
+      // Desktop: click opens the link directly
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <section className="py-20 px-6 md:py-36 md:px-12 bg-canvas">
       <SectionWrapper>
@@ -54,19 +79,25 @@ export default function InstagramFeed() {
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 20 }}
               viewport={{ once: true }}
-              // whileHover="hovered" propagates the "hovered" variant name to all
-              // child motion elements — they can define their own variant responses.
-              // This avoids raw CSS group-hover transitions entirely.
+              // whileHover="hovered" propagates the "hovered" variant to all child
+              // motion elements — used for desktop hover overlay + zoom.
+              // animate="touched"/"idle" propagates the same way for mobile tap state.
               whileHover="hovered"
+              animate={activePostId === post.id ? "touched" : "idle"}
               transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.06 }}
               // aspect-square = forces 1:1 ratio
               // overflow-hidden = clips the zoom effect to the card boundary
               className="relative aspect-square overflow-hidden rounded-lg cursor-pointer"
+              onClick={() => handlePostClick(post.id, post.link)}
             >
               {/* Inner wrapper for the image — scales via Framer Motion variant */}
               <motion.div
                 className="absolute inset-0"
-                variants={{ hovered: { scale: 1.1 } }}
+                variants={{
+                  hovered: { scale: 1.1 },
+                  touched: { scale: 1.1 },
+                  idle: { scale: 1 },
+                }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <Image
@@ -78,11 +109,15 @@ export default function InstagramFeed() {
                 />
               </motion.div>
 
-              {/* HOVER OVERLAY — fades in via Framer Motion variant (no raw CSS transition) */}
+              {/* OVERLAY — fades in on hover (desktop) or tap (mobile) */}
               <motion.div
                 className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-3"
-                variants={{ hovered: { opacity: 1 } }}
-                initial={{ opacity: 0 }}
+                variants={{
+                  hovered: { opacity: 1 },
+                  touched: { opacity: 1 },
+                  idle: { opacity: 0 },
+                }}
+                initial="idle"
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 {/* Like count */}

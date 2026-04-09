@@ -20,6 +20,7 @@ export interface GymEvent {
   description: string;
   type: EventType;
   spotsLeft: number | null; // null = unlimited / no registration
+  link: string;
 }
 
 export const events: GymEvent[] = [
@@ -34,6 +35,7 @@ export const events: GymEvent[] = [
       "Upcycling crop shirt from HUVIVA, available at @jmt_paris. A limited boxing-fashion collab.",
     type: "open-gym",
     spotsLeft: null,
+    link: "https://www.instagram.com/p/DRAGNxRjFGm/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "ev-2",
@@ -46,6 +48,7 @@ export const events: GymEvent[] = [
       "Overhandz visits El Cafe gym in Mexico City — one of the best boxing gyms around. International connections.",
     type: "open-gym",
     spotsLeft: null,
+    link: "https://www.instagram.com/p/CoIGHQKLl4Z/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "ev-3",
@@ -58,6 +61,7 @@ export const events: GymEvent[] = [
       "Photos from the Battle Montmartre Breaking Club x Overhandz. Full photo album available on the Montmartre Breaking Club Facebook page.",
     type: "competition",
     spotsLeft: null,
+    link: "https://www.instagram.com/p/CgH4qJCrAmN/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
   {
     id: "ev-4",
@@ -70,5 +74,6 @@ export const events: GymEvent[] = [
       "Pre-selection 13H30. Entry 5€ + 1 consommation, free for participants. Battle categories: Break Open Qualif (Money Price) and 7ToSmoke All Style Open Qualif (Money Price). DJ Locky.",
     type: "competition",
     spotsLeft: null,
+    link: "https://www.instagram.com/p/CewM_EkLKMy/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==",
   },
 ];
