@@ -4,17 +4,15 @@
 import { motion } from "framer-motion"
 import SectionWrapper from "@/components/ui/SectionWrapper"
 import Button from "@/components/ui/Button"
+import type { Dict, Lang } from "@/lib/getDictionary"
 
-// ---------------------------------------------------------------------------
-// FinalCTA — full-width closing call-to-action section
-//
-// Appears at the bottom of every page before the footer.
-// Goal: convert any user who scrolled past all content but hasn't booked yet.
-// ---------------------------------------------------------------------------
+interface FinalCTAProps {
+  dict: Dict["final_cta"];
+  lang: Lang;
+}
 
-export default function FinalCTA() {
+export default function FinalCTA({ dict, lang }: FinalCTAProps) {
   return (
-    // Extra top/bottom padding for the closing section — more visual weight
     <section className="py-20 px-6 md:py-36 md:px-12 bg-surface border-t border-edge">
       <SectionWrapper>
         <motion.div
@@ -24,30 +22,25 @@ export default function FinalCTA() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center"
         >
-          {/* Large closing statement */}
           <h2 className="text-white font-bold text-4xl md:text-6xl tracking-tight mb-4">
-            Train with us.
+            {dict.heading}
           </h2>
           <p className="text-dim text-base md:text-lg max-w-lg mx-auto mb-10 leading-relaxed">
-            Show up and see what Overhandz is about.
+            {dict.subtext}
           </p>
 
-          {/* CTA buttons */}
           <div className="flex flex-col items-center sm:flex-row gap-4 justify-center">
-            <Button href="/schedule" variant="primary">
-              Book your first class
+            <Button href={`/${lang}/schedule`} variant="primary">
+              {dict.cta_primary}
             </Button>
-            <Button href="/pricing" variant="secondary">
-              See pricing
+            <Button href={`/${lang}/pricing`} variant="secondary">
+              {dict.cta_secondary}
             </Button>
           </div>
 
-          {/* Location trust signal */}
-          <p className="text-dim text-sm mt-8">
-            Ivry-sur-Seine · Paris · Open 5 days a week
-          </p>
+          <p className="text-dim text-sm mt-8">{dict.location}</p>
         </motion.div>
       </SectionWrapper>
     </section>
-  );
+  )
 }

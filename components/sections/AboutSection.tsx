@@ -5,21 +5,18 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import SectionWrapper from "@/components/ui/SectionWrapper"
 import Button from "@/components/ui/Button"
+import type { Dict, Lang } from "@/lib/getDictionary"
 
-// ---------------------------------------------------------------------------
-// AboutSection — gym story in a split layout (text left, image right)
-//
-// Appears on the landing page as a short preview.
-// The /about page has the full version with coaches and philosophy.
-// ---------------------------------------------------------------------------
+interface AboutSectionProps {
+  dict: Dict["about_section"];
+  lang: Lang;
+}
 
-export default function AboutSection() {
+export default function AboutSection({ dict, lang }: AboutSectionProps) {
   return (
     <section className="py-20 px-6 md:py-36 md:px-12 bg-canvas">
       <SectionWrapper>
 
-        {/* SPLIT LAYOUT — text left, image right */}
-        {/* Reverses order on mobile: image first, then text */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
 
           {/* LEFT — text content */}
@@ -30,33 +27,23 @@ export default function AboutSection() {
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <p className="text-dim text-sm font-medium tracking-widest uppercase mb-3">
-              Our story
+              {dict.eyebrow}
             </p>
             <h2 className="text-white font-semibold text-3xl md:text-5xl tracking-tight mb-6">
-              Born in Ivry.
+              {dict.h2_line1}
               <br />
-              Built for fighters.
+              {dict.h2_line2}
             </h2>
-            <p className="text-dim text-base leading-relaxed mb-4">
-              Overhandz started as a single room, a few bags, and a coach who
-              believed that real boxing isn't reserved for elite athletes.
-            </p>
-            <p className="text-dim text-base leading-relaxed mb-4">
-              Today, over 1,600 members have trained with us — from absolute
-              beginners to competitive fighters representing Paris on the
-              regional circuit.
-            </p>
-            <p className="text-dim text-base leading-relaxed mb-8">
-              We're based in Ivry-sur-Seine, just minutes from central Paris.
-              Walk in as a beginner. Leave as a fighter.
-            </p>
+            <p className="text-dim text-base leading-relaxed mb-4">{dict.p1}</p>
+            <p className="text-dim text-base leading-relaxed mb-4">{dict.p2}</p>
+            <p className="text-dim text-base leading-relaxed mb-8">{dict.p3}</p>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button href="/about" variant="primary">
-                Meet the team
+              <Button href={`/${lang}/about`} variant="primary">
+                {dict.cta_primary}
               </Button>
-              <Button href="/contact" variant="secondary">
-                Find us
+              <Button href={`/${lang}/contact`} variant="secondary">
+                {dict.cta_secondary}
               </Button>
             </div>
           </motion.div>
@@ -71,7 +58,7 @@ export default function AboutSection() {
           >
             <Image
               src="/images/ui/about-cropped.png"
-              alt="Coach Karim training a student at Overhandz Boxing Club in Ivry-sur-Seine, Paris"
+              alt="Coach training a student at Overhandz Boxing Club in Ivry-sur-Seine, Paris"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
@@ -80,5 +67,5 @@ export default function AboutSection() {
         </div>
       </SectionWrapper>
     </section>
-  );
+  )
 }

@@ -8,6 +8,8 @@
 // Add real-time availability updates via WebSockets or polling
 // ---------------------------------------------------------------------------
 
+import type { Lang } from "@/lib/getDictionary"
+
 export type ClassType = "Boxe Anglaise" | "Muay-Thaï" | "Muay-Thaï Féminin";
 
 export type DayOfWeek =
@@ -29,7 +31,7 @@ export interface ScheduleClass {
   spotsLeft: number;
   totalSpots: number;
   durationMinutes: number;
-  description: string;
+  description: Record<Lang, string>;
 }
 
 export const classes: ScheduleClass[] = [
@@ -44,8 +46,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 8,
     totalSpots: 15,
     durationMinutes: 60,
-    description:
-      "Cours de muay-thaï tous niveaux. Techniques de frappe, travail aux pads et conditionnement.",
+    description: {
+      fr: "Cours de muay-thaï tous niveaux. Techniques de frappe, travail aux pads et conditionnement.",
+      en: "All-levels Muay Thai class. Striking techniques, pad work, and conditioning.",
+    },
   },
 
   // --- TUESDAY ---
@@ -59,8 +63,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 6,
     totalSpots: 15,
     durationMinutes: 60,
-    description:
-      "Cours de boxe anglaise. Technique, combinaisons et travail au sac.",
+    description: {
+      fr: "Cours de boxe anglaise. Technique, combinaisons et travail au sac.",
+      en: "Boxing class. Technique, combinations, and bag work.",
+    },
   },
 
   // --- WEDNESDAY ---
@@ -74,8 +80,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 8,
     totalSpots: 12,
     durationMinutes: 60,
-    description:
-      "Cours de muay-thaï dédié aux femmes. Ambiance bienveillante, technique solide.",
+    description: {
+      fr: "Cours de muay-thaï dédié aux femmes. Ambiance bienveillante, technique solide.",
+      en: "Women's Muay Thai class. Welcoming atmosphere, solid technique.",
+    },
   },
   {
     id: "wed-2",
@@ -87,8 +95,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 7,
     totalSpots: 15,
     durationMinutes: 60,
-    description:
-      "Cours de muay-thaï tous niveaux. Pads, technique et sparring léger.",
+    description: {
+      fr: "Cours de muay-thaï tous niveaux. Pads, technique et sparring léger.",
+      en: "All-levels Muay Thai. Pads, technique, and light sparring.",
+    },
   },
 
   // --- THURSDAY ---
@@ -102,8 +112,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 5,
     totalSpots: 15,
     durationMinutes: 60,
-    description:
-      "Cours de boxe anglaise. Techniques avancées, jeu de jambes et sparring encadré.",
+    description: {
+      fr: "Cours de boxe anglaise. Techniques avancées, jeu de jambes et sparring encadré.",
+      en: "Boxing class. Advanced technique, footwork, and supervised sparring.",
+    },
   },
 
   // --- FRIDAY ---
@@ -117,8 +129,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 9,
     totalSpots: 12,
     durationMinutes: 60,
-    description:
-      "Cours de muay-thaï féminin. Conditionnement et technique.",
+    description: {
+      fr: "Cours de muay-thaï féminin. Conditionnement et technique.",
+      en: "Women's Muay Thai. Conditioning and technique.",
+    },
   },
   {
     id: "fri-2",
@@ -130,8 +144,10 @@ export const classes: ScheduleClass[] = [
     spotsLeft: 8,
     totalSpots: 15,
     durationMinutes: 60,
-    description:
-      "Cours de muay-thaï. Fin de semaine active avec travail intensif aux pads.",
+    description: {
+      fr: "Cours de muay-thaï. Fin de semaine active avec travail intensif aux pads.",
+      en: "Muay Thai class. Active end-of-week session with intensive pad work.",
+    },
   },
 ];
 

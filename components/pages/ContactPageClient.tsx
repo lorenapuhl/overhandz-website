@@ -5,6 +5,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import SectionWrapper from "@/components/ui/SectionWrapper"
 import Button from "@/components/ui/Button"
+import type { Dict } from "@/lib/getDictionary"
 
 // ---------------------------------------------------------------------------
 // ContactPageClient — contact form, WhatsApp button, map placeholder
@@ -23,7 +24,11 @@ interface ContactForm {
   message: string;
 }
 
-export default function ContactPageClient() {
+interface ContactPageClientProps {
+  dict: Dict["contact_page"];
+}
+
+export default function ContactPageClient({ dict }: ContactPageClientProps) {
   // Form data state
   const [form, setForm] = useState<ContactForm>({ name: "", email: "", message: "" });
   // submitted = true shows the success message instead of the form
@@ -60,11 +65,11 @@ export default function ContactPageClient() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <p className="text-dim text-sm font-medium tracking-widest uppercase mb-2">
-              Get in touch
+              {dict.eyebrow}
             </p>
             {/* h1 — exactly one per page */}
             <h1 className="text-white font-bold text-5xl md:text-7xl tracking-tight">
-              Contact
+              {dict.heading}
             </h1>
           </motion.div>
         </SectionWrapper>
@@ -82,7 +87,7 @@ export default function ContactPageClient() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <h2 className="text-white font-semibold text-2xl mb-6">Send a message</h2>
+              <h2 className="text-white font-semibold text-2xl mb-6">{dict.form_heading}</h2>
 
               {/* SUCCESS STATE — shown after form is submitted */}
               {submitted ? (
@@ -97,14 +102,14 @@ export default function ContactPageClient() {
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
-                  <p className="text-white font-semibold mb-1">Message sent.</p>
-                  <p className="text-dim text-sm">We&apos;ll get back to you within 24 hours.</p>
+                  <p className="text-white font-semibold mb-1">{dict.success_heading}</p>
+                  <p className="text-dim text-sm">{dict.success_subtext}</p>
                 </motion.div>
               ) : (
                 /* FORM */
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-dim text-xs mb-1">Name</label>
+                    <label className="block text-dim text-xs mb-1">{dict.name}</label>
                     <input
                       type="text"
                       required
@@ -115,7 +120,7 @@ export default function ContactPageClient() {
                     />
                   </div>
                   <div>
-                    <label className="block text-dim text-xs mb-1">Email</label>
+                    <label className="block text-dim text-xs mb-1">{dict.email}</label>
                     <input
                       type="email"
                       required
@@ -126,12 +131,12 @@ export default function ContactPageClient() {
                     />
                   </div>
                   <div>
-                    <label className="block text-dim text-xs mb-1">Message</label>
+                    <label className="block text-dim text-xs mb-1">{dict.message}</label>
                     {/* textarea for multi-line input */}
                     <textarea
                       required
                       rows={5}
-                      placeholder="Your question or message..."
+                      placeholder={dict.placeholder_message}
                       className={`${inputClass} resize-none`}
                       value={form.message}
                       onChange={(e) => updateField("message", e.target.value)}
@@ -143,7 +148,7 @@ export default function ContactPageClient() {
                     className="w-full"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : "Send message"}
+                    {isSubmitting ? dict.sending : dict.send}
                   </Button>
                 </form>
               )}
@@ -158,7 +163,7 @@ export default function ContactPageClient() {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-white font-semibold text-2xl mb-6">Find us</h2>
+                <h2 className="text-white font-semibold text-2xl mb-6">{dict.find_us_heading}</h2>
 
                 {/* ADDRESS */}
                 <div className="space-y-4">
@@ -168,7 +173,7 @@ export default function ContactPageClient() {
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                     <div>
-                      <p className="text-white text-sm font-medium">Address</p>
+                      <p className="text-white text-sm font-medium">{dict.address_label}</p>
                       <p className="text-dim text-sm mt-0.5">12 Rue Molière<br />94200 Ivry-sur-Seine</p>
                     </div>
                   </div>
@@ -180,7 +185,7 @@ export default function ContactPageClient() {
                       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
                     </svg>
                     <div>
-                      <p className="text-white text-sm font-medium">Instagram</p>
+                      <p className="text-white text-sm font-medium">{dict.instagram_label}</p>
                       <a href="https://www.instagram.com/overhandzclub/" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-white text-sm transition-colors">
                         @overhandzclub
                       </a>
@@ -193,8 +198,8 @@ export default function ContactPageClient() {
                       <line x1="12" y1="18" x2="12.01" y2="18" />
                     </svg>
                     <div>
-                      <p className="text-white text-sm font-medium">Hours</p>
-                      <p className="text-dim text-sm mt-0.5">Monday – Friday: 7:00 – 22:00<br />Saturday – Sunday: 9:00 – 14:00</p>
+                      <p className="text-white text-sm font-medium">{dict.hours_label}</p>
+                      <p className="text-dim text-sm mt-0.5" style={{ whiteSpace: "pre-line" }}>{dict.hours_value}</p>
                     </div>
                   </div>
                 </div>
@@ -214,8 +219,8 @@ export default function ContactPageClient() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white text-sm font-medium">Message us on WhatsApp</p>
-                  <p className="text-dim text-xs">Usually replies within 1 hour</p>
+                  <p className="text-white text-sm font-medium">{dict.whatsapp_heading}</p>
+                  <p className="text-dim text-xs">{dict.whatsapp_sub}</p>
                 </div>
               </a>
 

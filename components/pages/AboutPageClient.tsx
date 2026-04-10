@@ -6,6 +6,7 @@ import Image from "next/image"
 import SectionWrapper from "@/components/ui/SectionWrapper"
 import Button from "@/components/ui/Button"
 import FinalCTA from "@/components/sections/FinalCTA"
+import type { Dict, Lang } from "@/lib/getDictionary"
 
 // ---------------------------------------------------------------------------
 // AboutPageClient — full about page
@@ -18,31 +19,19 @@ import FinalCTA from "@/components/sections/FinalCTA"
 //   5. FinalCTA — shared booking push
 // ---------------------------------------------------------------------------
 
-const coaches = [
-  {
-    id: "rudy",
-    name: "Coach Rudy",
-    role: "Coach Boxe Anglaise",
-    imageUrl: "/images/coaches/rudy.png",
-    bio: "Spécialiste de la boxe anglaise, Rudy encadre les cours du mardi et du jeudi. Technique rigoureuse, pédagogie accessible — que vous débutiez ou que vous prépariez un combat.",
-  },
-  {
-    id: "fabrice",
-    name: "Coach Fabrice",
-    role: "Coach Muay-Thaï",
-    imageUrl: "/images/coaches/fabrice.png",
-    bio: "Passionné de muay-thaï, Fabrice anime le cours du lundi. Son approche allie technique de frappe, travail aux pads et conditionnement physique pour tous les niveaux.",
-  },
-  {
-    id: "morad",
-    name: "Coach Morad",
-    role: "Coach Muay-Thaï & Muay-Thaï Féminin",
-    imageUrl: "/images/coaches/morad.png",
-    bio: "Morad encadre les cours de muay-thaï et les cours féminins du mercredi et vendredi. Ambiance exigeante et bienveillante, avec une attention particulière portée à la technique et à la progression de chacun.",
-  },
-];
+const coachImages: Record<string, string> = {
+  rudy: "/images/coaches/rudy.png",
+  fabrice: "/images/coaches/fabrice.png",
+  morad: "/images/coaches/morad.png",
+}
 
-export default function AboutPageClient() {
+interface AboutPageClientProps {
+  dict: Dict;
+  lang: Lang;
+}
+
+export default function AboutPageClient({ dict, lang }: AboutPageClientProps) {
+  const ap = dict.about_page
   return (
     <main>
       {/* PAGE HEADER */}
@@ -54,11 +43,11 @@ export default function AboutPageClient() {
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <p className="text-dim text-sm font-medium tracking-widest uppercase mb-2">
-              Our story
+              {ap.eyebrow}
             </p>
             {/* h1 — exactly one per page */}
             <h1 className="text-white font-bold text-5xl md:text-7xl tracking-tight">
-              About
+              {ap.heading}
             </h1>
           </motion.div>
         </SectionWrapper>
@@ -73,14 +62,6 @@ export default function AboutPageClient() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            {/* h2 title (commented out)
-            <h2 className="text-white font-semibold text-3xl md:text-4xl tracking-tight mb-8">
-              Born in Ivry.
-              <br />
-              Built for fighters.
-            </h2>
-            */}
-
             {/* Full-width image */}
             <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8">
               <Image
@@ -92,47 +73,12 @@ export default function AboutPageClient() {
               />
             </div>
 
-            {/* LEFT — old image (commented out, replaced by about-picture.png above)
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
-              <Image
-                src="/images/ui/about-cropped.png"
-                alt="Interior of Overhandz Boxing Club gym in Ivry-sur-Seine Paris showing boxing bags and ring"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-            */}
-
-            {/* RIGHT — story text (commented out, not visible with full-width image layout)
-            <div className="space-y-4 text-dim text-base leading-relaxed">
-              <p>
-                Overhandz started in 2018 as a single training room in Ivry-sur-Seine
-                with one heavy bag, a speed bag, and a coach who believed real boxing
-                didn&apos;t belong to the elite.
-              </p>
-              <p>
-                Since then, over 1,600 members have trained with us — from office
-                workers looking for a challenge to fighters who have gone on to
-                represent Paris at the regional and national level.
-              </p>
-              <p>
-                We offer boxing, Muay Thai, sparring sessions, and beginner programs.
-                Our approach is technical, demanding, and welcoming — you don&apos;t
-                have to want to fight to train here. But if you do, we&apos;ll get you there.
-              </p>
-              <p>
-                Based in Ivry-sur-Seine, minutes from central Paris.
-              </p>
-            </div>
-            */}
-
             <div className="flex gap-3 justify-center">
-              <Button href="/schedule" variant="primary">
-                Book a class
+              <Button href={`/${lang}/schedule`} variant="primary">
+                {ap.cta_primary}
               </Button>
-              <Button href="/contact" variant="secondary">
-                Visit us
+              <Button href={`/${lang}/contact`} variant="secondary">
+                {ap.cta_secondary}
               </Button>
             </div>
           </motion.div>
@@ -150,15 +96,15 @@ export default function AboutPageClient() {
             className="mb-12"
           >
             <p className="text-dim text-sm font-medium tracking-widest uppercase mb-2">
-              The team
+              {ap.coaches_eyebrow}
             </p>
             <h2 className="text-white font-semibold text-3xl md:text-5xl tracking-tight">
-              Coaches
+              {ap.coaches_heading}
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {coaches.map((coach, index) => (
+            {ap.coaches.map((coach, index) => (
               <motion.div
                 key={coach.id}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -169,7 +115,7 @@ export default function AboutPageClient() {
                 {/* Coach image */}
                 <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-5">
                   <Image
-                    src={coach.imageUrl}
+                    src={coachImages[coach.id] ?? `/images/coaches/${coach.id}.png`}
                     alt={`${coach.name} — ${coach.role} at Overhandz Boxing Club`}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -196,27 +142,24 @@ export default function AboutPageClient() {
             className="max-w-2xl"
           >
             <p className="text-dim text-sm font-medium tracking-widest uppercase mb-3">
-              How we train
+              {ap.philosophy_eyebrow}
             </p>
             <h2 className="text-white font-semibold text-3xl md:text-5xl tracking-tight mb-8">
-              Our philosophy
+              {ap.philosophy_heading}
             </h2>
 
             <div className="space-y-6 text-dim text-base leading-relaxed">
               <p>
-                <span className="text-white font-medium">Technical first.</span>{" "}
-                We believe foundations make fighters. Every session builds on proper
-                stance, footwork, and defense before power.
+                <span className="text-white font-medium">{ap.philosophy_p1_bold}</span>{" "}
+                {ap.philosophy_p1_rest}
               </p>
               <p>
-                <span className="text-white font-medium">All levels, same gym.</span>{" "}
-                Beginners and fight team members train in the same space. That&apos;s
-                intentional — it accelerates learning and builds community.
+                <span className="text-white font-medium">{ap.philosophy_p2_bold}</span>{" "}
+                {ap.philosophy_p2_rest}
               </p>
               <p>
-                <span className="text-white font-medium">Discipline without ego.</span>{" "}
-                We take the sport seriously. We don&apos;t take ourselves too seriously.
-                The gym is demanding, not exclusive.
+                <span className="text-white font-medium">{ap.philosophy_p3_bold}</span>{" "}
+                {ap.philosophy_p3_rest}
               </p>
             </div>
           </motion.div>
@@ -224,7 +167,7 @@ export default function AboutPageClient() {
       </section>
 
       {/* CLOSING CTA */}
-      <FinalCTA />
+      <FinalCTA dict={dict.final_cta} lang={lang} />
     </main>
   );
 }
